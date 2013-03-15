@@ -130,7 +130,7 @@ static void video_encode_example(const char *filename, AVCodecID codec_id)
     }
 
     /* encode video */
-	int num_frames = 3600;
+	int num_frames = 1000;
     for(i=0;i<num_frames;i++) {
         av_init_packet(&pkt);
         pkt.data = NULL;    // packet data will be allocated by the encoder
@@ -148,9 +148,9 @@ static void video_encode_example(const char *filename, AVCodecID codec_id)
 					//src_frame->data[0][y * src_frame->linesize[0] + x*3+1] = rand() % 255 ; //g
 					//src_frame->data[0][y * src_frame->linesize[0] + x*3+2] = rand() % 255 ; //b
 
-					src_frame->data[0][y * src_frame->linesize[0] + x*3] = x * y + i % 255 ; //r
-					src_frame->data[0][y * src_frame->linesize[0] + x*3+1] = x * y + i % 255 ; //g
-					src_frame->data[0][y * src_frame->linesize[0] + x*3+2] = x * y + i % 255 ; //b
+					src_frame->data[0][y * src_frame->linesize[0] + x*3] = (x * y + i % 600) * (255.0/600.0) ; //r
+					src_frame->data[0][y * src_frame->linesize[0] + x*3+1] = (x * y + i % 600) * (255.0/600.0) ; //g
+					src_frame->data[0][y * src_frame->linesize[0] + x*3+2] = (x * y + i % 600) * (255.0/600.0) ; //b
 				}
 		  }
 
